@@ -8,11 +8,11 @@
 
 #--------------------------------------------------------------------------------------------------------
 #                        SFTP commands
-USER_REMOTE=ist188120
+USER_REMOTE=istxxxxx
 HOST_REMOTE=sigma.ist.utl.pt
 REMOTE_DIR=/afs/ist.utl.pt/groups/helianto/SolarTuk/remote
 FOLDER=data
-export SSHPASS=Fisica20 # Is For temporary purpose onlyand will be removed during reboot
+export SSHPASS=password # Is For temporary purpose onlyand will be removed during reboot
 LOCAL_DIR='/home/pi/Documents/server_page/main/full_data_logger/data/log_*'
 #---------------------------------------------------------------------------------------------------------
 #                        RPI commands
