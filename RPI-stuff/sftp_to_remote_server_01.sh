@@ -82,7 +82,11 @@ function perform_directory {
 
 function check_change_in_file {
    perform_directory
-   watch -n 2 -d ls -l $fn
+   printf "New file" "\t\t New file %s-  $fn"
+   # check size1 of this new file
+   sleep 120  # sleep for 2 minutes
+   # check again the size2
+   # compare the the size if is different then upload the file to helianto  
    
 }
 
