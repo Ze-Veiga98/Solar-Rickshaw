@@ -1,1 +1,2 @@
 # Solar-Rickshaw
+This project is under development and it is been made in the scope of my master thesis which consists in construction and evaluation performance of and electric tuk tuk (rickshaw) with the addition of solar panels. With this in mind, three set of solar panels were installed at the roof of our sola rickshaw and microcontroller version: raspberry pi 3b will be used for data acquision.
