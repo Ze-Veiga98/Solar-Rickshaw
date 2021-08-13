@@ -25,11 +25,11 @@
 pingme='8.8.8.8'
 
 
-USER_REMOTE=ist188120
+USER_REMOTE=istxxxxxx
 HOST_REMOTE=sigma.ist.utl.pt
 REMOTE_DIR=/afs/ist.utl.pt/groups/helianto/SolarTuk/remote
 FOLDER=data
-export SSHPASS=Fisica20 # Is For temporary purpose onlyand will be removed during reboot
+export SSHPASS=your_ist_password # Is For temporary purpose onlyand will be removed during reboot
 LOCAL_DIR='/home/pi/Documents/server_page/main/full_data_logger/data/log_*'
 
 
@@ -38,7 +38,7 @@ function date_log {
     echo "$(date +'%Y-%m-%d %T') $1"
 }
 
-ver="v0.3"  # This is first version 
+ver="v0.3"  
 printf "\n"
 echo "estou"
 date_log "$0 version $ver written by José Carlos." 
