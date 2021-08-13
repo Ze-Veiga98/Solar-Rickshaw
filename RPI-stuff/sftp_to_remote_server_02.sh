@@ -1,23 +1,36 @@
 #!/bin/bash
 
-#********************************************************************************************************
-# Bash script used to upload files to remote server (helianto -group).                                  *
-# Commands used: sshpass for raspberrypi to be able to connect to remote server without user interation *
-# Author: José Carlos // ago 10 10.33                                                                   *
-#******************************************************************************************************** 
 
-#                        SFTP commands
+### BEGIN INIT INFO
+# Provides:           SFTP-put
+# Requires:           authentication
+# Short-Description:  SFTP files synchronization
+### END INIT INFO
+
+###########################################################################################
+#                                                                                         #
+# SFTP Sync v0.3                                                                          #
+#                                                                                         #
+# A shell script to upload files to remote SFTP server and your local server/raspberrypi  #
+# The raspberry pi will save a file every time it is booted. So the main idea is to       #
+# upload that files to a remote server via sftp (secure files transfer protocol.          #
+#                                                                                         #
+# Master project: Solar tuk tuk @ IST                                                     #  
+# Author: José Veiga                                                                      #
+# Supervisors: Horácio Fernandes and Paulo Branco.                                        #
+# ago 12 16:21 'Laboratório da area de energia'                                           #
+###########################################################################################
+
+# Global variables
+pingme='8.8.8.8'
+
+
 USER_REMOTE=ist188120
 HOST_REMOTE=sigma.ist.utl.pt
 REMOTE_DIR=/afs/ist.utl.pt/groups/helianto/SolarTuk/remote
 FOLDER=data
 export SSHPASS=Fisica20 # Is For temporary purpose onlyand will be removed during reboot
 LOCAL_DIR='/home/pi/Documents/server_page/main/full_data_logger/data/log_*'
-#---------------------------------------------------------------------------------------------------------
-#                        RPI commands
-pingme='google.com'
-
-#---------------------------------------------------------------------------------------------------------
 
 
 # This function is a simple logger, just adding datetime to messages.
@@ -25,11 +38,12 @@ function date_log {
     echo "$(date +'%Y-%m-%d %T') $1"
 }
 
-ver="0.0"  # This is first version 
+ver="v0.3"  # This is first version 
 printf "\n"
+echo "estou"
 date_log "$0 version $ver written by José Carlos." 
 
-# The first thing that we want to do is to check if the raspberry pi has internet access. To do this just ping to google.com for exem.
+
 echo "--------------------------------------------------------------------"
 
 
@@ -41,13 +55,14 @@ function check_if_RPI_has_internet {
         # In Batch return code 0 usually means that everything executed successully
         # Check if the 'ping' command returned 0
         if [[ $? == 0 ]]; then 
-           date_log "Raspberry pi is UP"
+           date_log "Raspberry pi is online"
            return 0
+        else
+          echo "Raspberry pi is offline. See you soon!" 
+                    
         fi
-     done
-     echo "Seems that my connection went down- I will notify you went I'm up"
-     echo "See you soon"
-     return 1       
+        
+     done 
 }
 
 function install_requirments_if_need {
@@ -78,22 +93,44 @@ function perform_directory {
    echo "-------------------------------------------------------------------------"   
    printf "\t\t New file %s- contains %d lines" $fn $fnsize
    printf "\n"
-}
+ }
+ 
+ # PURPOSE: Upload all the files added in a specific directory in a given day at which the script is ran.
+ 
+## This function is responsable to search for all the news data comming in a specific folder (in this case - data)  and then
+#  iterate over that folder and move all its content to a another folder called 'data-to-sftp' and upload to remote server. 
+# After all the files have been uploaded to a remote server, the script remove all the files in the local folder.
+ 
 
 function watch_file {
    perform_directory
-   
-   pn=$(ls -Art log_* | tail -n 2 | head -n 1) #second last file in the directory
-   echo "connecting again to helainto"
-   sshpass -e sftp -p $USER_REMOTE@$HOST_REMOTE:$REMOTE_DIR << EOF
-   put $pn
-   put $fn
-   bye    
+   cd /home/pi/Documents/server_page/main/full_data_logger/data 
+   FILES=$(ls log_* -l --time-style=+%D | grep $(date +%D) | grep -v '^d' | awk '{print $NF}')
+   DESTINATION=/home/pi/Documents/server_page/main/full_data_logger/data-to-sftp
+   if [ -n "${FILES}" ]
+   then
+      for f in ${FILES}
+      do
+          cp -prf ${f} ${DESTINATION}
+      done
+      sshpass -e sftp -p $USER_REMOTE@$HOST_REMOTE:$REMOTE_DIR << EOF
+      put /home/pi/Documents/server_page/main/full_data_logger/data-to-sftp/*
+      bye
 EOF
-  # probably I will return here to remove the older files in local server.
-  #rm -f $pn
-  #echo $?
+   rm -v /home/pi/Documents/server_page/main/full_data_logger/data-to-sftp/*
+    
+   else
+     echo "NO FILES TO MOVE"
+   fi
    
 }
 
 watch_file
+
+
+
+
+
+
+
+
