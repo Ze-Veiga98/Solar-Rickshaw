@@ -24,11 +24,11 @@ pingme='8.8.8.8'
 
 # Customize sftp put variables
 #-----------------------------------------------------------------------------------------
-USER_REMOTE=ist188120
+USER_REMOTE=istxxxxxx
 HOST_REMOTE=sigma.ist.utl.pt
 REMOTE_DIR=/afs/ist.utl.pt/groups/helianto/SolarTuk/remote
 FOLDER=data
-export SSHPASS=Fisica20 # Is For temporary purpose onlyand will be removed during reboot
+export SSHPASS="" # Is For temporary purpose onlyand will be removed during reboot
 LOCAL_DIR='/home/pi/Documents/server_page/main/full_data_logger/data/log_*'
 #-----------------------------------------------------------------------------------------
 
