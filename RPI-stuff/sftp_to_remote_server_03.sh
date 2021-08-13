@@ -24,23 +24,23 @@ pingme='8.8.8.8'
 
 # Customize sftp put variables
 #-----------------------------------------------------------------------------------------
-USER_REMOTE=istxxxxxx
-HOST_REMOTE=sigma.ist.utl.pt
-REMOTE_DIR=/afs/ist.utl.pt/groups/helianto/SolarTuk/remote
-FOLDER=data
+USER_REMOTE=
+HOST_REMOTE=
+REMOTE_DIR=
+FOLDER=
 export SSHPASS="" # Is For temporary purpose onlyand will be removed during reboot
-LOCAL_DIR='/home/pi/Documents/server_page/main/full_data_logger/data/log_*'
+LOCAL_DIR=''
 #-----------------------------------------------------------------------------------------
 
 # Customize rclone sync variables
 # ----------------------------------------------------------------------------------------------------------------------------------
 
-RCLONENAME="datatese"                                                  # Name of Remote Storage Service
-SYNCROOT="home/pi/Documents/server_page/main/full_data_logger/data"    # Root Folder to start
-REMOTEDIR="Rotas_Ze_Ornelas/Rotas_Tuk_Solar"                           # Destination Folderon Remote
-RCLONEPARAM="copy"                                                     # rclone option to perform Eg sync, copy, move
-                                                                     # IMPORTANT: sync will make remoteDir identical to localDir
-                                                                     # so remoteDir Files that do not exist on localDir will be DeletE
+RCLONENAME=""                                                  # Name of Remote Storage Service
+SYNCROOT=""                                                    # Root Folder to start
+REMOTEDIR=""                                                   # Destination Folderon Remote
+RCLONEPARAM=""                                                 # rclone option to perform Eg sync, copy, move
+                                                               # IMPORTANT: sync will make remoteDir identical to localDir
+                                                               # so remoteDir Files that do not exist on localDir will be DeletE
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 # This function is a simple logger, just adding datetime to messages.
@@ -149,7 +149,7 @@ function upload_data_to_google_drive {
    
    echo "upload data to google drive too"
    
-   rclone copy /home/pi/Documents/server_page/main/full_data_logger/data datatese:Rotas_Ze_Ornelas/Rotas_Tuk_Solar
+   rclone copy /home/pi/Documents/server_page/main/full_data_logger/data datatese:path/to/folder
    if [[ $? == 0 ]]; then
       data_log "data was been uploaded successfully"
       return 0
