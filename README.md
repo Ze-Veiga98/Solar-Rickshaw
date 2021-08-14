@@ -15,8 +15,22 @@ In the folder `RPI-stuff` can be found some functions implemented in bash langua
 upload all the data from a Raspberry Pi into a remote server. 
 
 ```bash
-function hahaha {
-   2werft
+function check_if_RPI_has_internet {
+     for ip in $pingme; do
+        echo "pinging to $ip"
+        ping -c 1 $ip > /dev/null 2>&1
+        # We know that $? variable contains the return code of the previous command.
+        # In Batch return code 0 usually means that everything executed successully
+        # Check if the 'ping' command returned 0
+        if [[ $? == 0 ]]; then 
+           date_log "Raspberry pi is online"
+           return 0
+        else
+          echo "Raspberry pi is offline. See you soon!" 
+                    
+        fi
+        
+     done 
 }
 ```
 
