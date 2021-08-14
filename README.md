@@ -7,7 +7,7 @@ description: |
 tags: 'Python, Raspberry Pi, GPS, Shell'
 title: Solar assisted electric rickshaw 
 ---
-This project is under development and it is been made in the scope of my master thesis which consists in construction and evaluation performance of and electric tuk tuk (rickshaw) with the addition of solar panels. With this in mind, three set of solar panels were installed at the roof of our sola rickshaw and microcontroller version: raspberry pi 3b will be used for data acquision.
+This project is under development and it is been made in the scope of my master thesis which consists in construction and evaluation performance of and electric tuk tuk (rickshaw) with the addition of solar panels. With this in mind, three set of solar panels were installed at the roof of our solar rickshaw and a Raspberry pi 3B microcontrolle will be used for data acquision.
 
 Folder: RPI-stuff
 ========================================================
