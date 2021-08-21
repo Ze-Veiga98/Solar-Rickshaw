@@ -20,7 +20,7 @@ There're a total of 8 registers addresses
 | Register Address | Description | Resolution
 | --- | --- | --- |
 | 0x0003 | The current range (**Pzem-017**) | 0001: 50A
-                                            |hjkl
+                                           
 
 
 
