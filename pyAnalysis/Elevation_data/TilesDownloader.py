@@ -4,12 +4,18 @@ import requests # send requests to mapbox-api
 import os
 
 from PIL import Image
+
 # For plot-related
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-TOKEN = "pk.eyJ1Ijoiam9zZXZlaWdhOTgiLCJhIjoiY2tsZjY2bjhrMjZnMTJ2bGI2dm14c2VwZyJ9.D4PIa7AzNR-CTHdbkm3mEw"
+# Your own mapbox token...
+TOKEN = "pk.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+##########################################################################################################################
+# This function downloads the altitude data in tileset format (RGB colours) as well as the correspoding sattelite images 
+# And saves them in a folder...
+##########################################################################################################################
 
 def build_canvas(top_left, bottom_right):
     for i in range(top_left.x, bottom_right.x):
@@ -85,18 +91,10 @@ for i in range(0, width):
 
         if matrix[i,j] > 1000:
             matrix[i,j] = 0
-
-#import pandas as pd
-#df = pd.DataFrame(data=matrix.astype(float))
-#df.to_csv('outfile.csv', sep=' ', header=False, float_format='%.2f', index=False)
-# convert pixels to coordenates
-# plot heat map
+# plot 
+sns.heatmap(matrix, cmap = 'coolwarm')
+plt.show()
             
-##sns.heatmap(matrix, cmap = 'coolwarm')
-#plt.show()
-            
-#ax = sns.heatmap(matrix, linewidth=0.5)
-#plt.show()
 
           
                     
