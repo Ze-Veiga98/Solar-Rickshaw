@@ -22,13 +22,11 @@
 # Global variables
 pingme='8.8.8.8'
 
-# Customize sftp put variables
-#-----------------------------------------------------------------------------------------
-USER_REMOTE=
-HOST_REMOTE=
-REMOTE_DIR=
-FOLDER=
-export SSHPASS="" # Is For temporary purpose onlyand will be removed during reboot
+USER_REMOTE=istxxxxxx
+HOST_REMOTE=sigma.ist.utl.pt
+REMOTE_DIR=/afs/ist.utl.pt/groups/helianto/SolarTuk/remote
+FOLDER=data
+export SSHPASS=your_ist_password # Is For temporary purpose onlyand will be removed during reboot
 LOCAL_DIR=''
 #-----------------------------------------------------------------------------------------
 
