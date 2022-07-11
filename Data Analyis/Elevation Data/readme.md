@@ -8,4 +8,5 @@ As it is well known, the altitude GPS data is not accurate enough to be used in 
 passing the pair of coordinate of points (latitude, longitude). Nevertheless, Mapbox obtains the elevation data thanks to the realization of the Copernicus EU program, which is an international research effort that provides the Digital Elevation Model (DEM) almost all over the land (from 56◦S to 60◦N). These data are generated from a weighted average of Shuttle Radar Topography Mission (SRTM) and Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTERM) [54]. Both datasets provide one altitude measurement for every square area of 900 m2, which translates into one measurement for every  30 m.
 
 
-![Alt Text](twin-satellites-terrasar-x-tandem-x.jpg?raw=true)
+<img src="twin-satellites-terrasar-x-tandem-x.jpg" width="100" height="100">
+
