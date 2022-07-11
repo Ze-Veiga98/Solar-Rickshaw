@@ -6,6 +6,8 @@ This Master's Thesis project had the objective of optimizing the process of char
 
 The first part involved the incorporation of the solar photovoltaic panels onto the vehicle's roof. In order to do this, the first step was to design supporting structures in order to attach the solar panels together by using two round tubes, holes were drilled to screw the panels to the tubes to the isophonic claim on top on the vehicle. The final product can be seen in figure below.
 
+![Alt Text](/images/soletuk.jpg?raw=true)
+
 
 ## Data Acquisition System
 
