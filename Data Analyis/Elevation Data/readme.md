@@ -10,3 +10,27 @@ passing the pair of coordinate of points (latitude, longitude). Nevertheless, Ma
 
 <img src="twin-satellites-terrasar-x-tandem-x.jpg" width="500" height="300">
 
+
+## Usage
+
+
+```python
+# Import the necessary packages for this repo
+from TilesDownloader import build_canvas
+
+# Create the estimator by passing model parameters
+kalman = RobustKalman(F, B, H, x0, P0, Q0, R0, use_robust_estimation=True)
+
+# ...
+
+# Do updates on every time step
+kalman.time_update()
+kalman.measurement_update(measurements)
+
+# ...
+
+# Get the estimations
+print('Current state estimates', kalman.current_estimate)
+
+```
+
