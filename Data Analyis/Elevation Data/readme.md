@@ -34,3 +34,7 @@ print('Current state estimates', kalman.current_estimate)
 
 ```
 
+## Authors
+José Veiga
+David Neto
+
