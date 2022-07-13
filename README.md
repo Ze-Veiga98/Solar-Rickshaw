@@ -17,3 +17,9 @@ The second part was to built a data acquisition system in order to collected dat
 In third part , data collected from several environmental conditions were analysed and used to evaluate wether this system yields real improvements in the vehicle's performance. The main outputs obtained from this work can be seen below.
 
 
+
+## Author
+José Veiga 
+Prof. H. Fernandes & Prof. P. Branco
+
+
