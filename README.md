@@ -19,7 +19,6 @@ In third part , data collected from several environmental conditions were analys
 
 
 ## Author
-José Veiga 
-Prof. H. Fernandes & Prof. P. Branco
+José Veiga\ Prof. H. Fernandes\ & Prof. P. Branco
 
 
