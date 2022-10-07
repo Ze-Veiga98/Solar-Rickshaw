@@ -15,24 +15,58 @@ passing the pair of coordinate of points (latitude, longitude). Nevertheless, Ma
 
 
 ```python
-# Import the necessary packages for this repo
+# Import the necessary packages
+import seaborn as sns
+import mercantile # convert lat/lon to tilesets
+import PIL
 from TilesDownloader import build_canvas
+from TilesDownloader import get_image_matrix
 
-# Create the estimator by passing model parameters
-kalman = RobustKalman(F, B, H, x0, P0, Q0, R0, use_robust_estimation=True)
+# Scan the range you would like to view
+# Select the area you are interested in
+zoom = 15                   
+top_left = mercantile.tile(-9.367633, 38.618097, zoom)
+bottom_right = mercantile.tile(-9.052183, 38.8207215, zoom) 
 
-# ...
+# Pulling the images data from the mapbox url and save it in a specific folder. This can be done calling the function 'build_canvas'
+build_canvas(top_left, bottom_right)
 
-# Do updates on every time step
-kalman.time_update()
-kalman.measurement_update(measurements)
+# The next step is to compose all of the smaller images into a very large image of very high resolution. This can be achieved through
+# 'get_image_matrix' function
 
-# ...
+im_mat = get_image_matrix(top_left, bottom_right)
+height = (top_left.y - bottom_right.y) * 256
+width  = (bottom_right.x - top_left.x) *256
+final_image = Image.new('RGB', (width, height))
 
-# Get the estimations
-print('Current state estimates', kalman.current_estimate)
+y_offset = 0
+for line in im_mat:
+    x_offset = 0
+    for element in line:
+        # final_image.paste(element, (x_offset, y_offset ))
+        final_image.paste(element, (y_offset, x_offset ))
+        x_offset += element.size[0]
+    y_offset += 256
 
-```
+final_image.save('full_image.png')
+
+final = Image.open('full_image.png')
+pix = final.load()
+
+matrix =np.zeros([width, height])
+
+
+for i in range(0, width):
+    for j in range(0, height):
+        pixel = pix[i,j]
+        matrix [i,j]  = -10000 + ((pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) * 0.1)
+
+        if matrix[i,j] > 1000:
+            matrix[i,j] = 0
+
+# plot altitude heat map
+sns.heatmap(matrix, cmap = 'plasma')
+
 
 ## Authors
 José Veiga &
