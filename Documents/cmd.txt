@@ -1,0 +1,4 @@
+Neste diretório pode-se encontrar os documentos escritos sobre a minha tese de mestrado.
+- Thesis
+- Extended abstract
+- slides for defense
