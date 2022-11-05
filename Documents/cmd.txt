@@ -2,3 +2,5 @@ Neste diretório pode-se encontrar os documentos escritos sobre a minha tese de 
 - Thesis
 - Extended abstract
 - slides for defense
+
+I used pdfpc to run the slides. You can set out the duration of the presentation and it shows you the current slides as well as the previous and precedent ones.
